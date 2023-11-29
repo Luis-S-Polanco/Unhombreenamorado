@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f7ebd3; /* Color de fondo crema */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #carrusel {
+            width: 50%; /* Ajustar el ancho del carrusel según sea necesario */
+            margin: auto;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #carrusel img {
+            max-width: 50%; /* Establecer el ancho máximo */
+            max-height: 200px; /* Establecer la altura máxima */
+            display: none;
+        }
+
+        #noButton {
+            cursor: pointer;
+            background-color: #ff7b7b; /* Color de fondo botón No */
+            color: #fff; /* Color de texto botón No */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #noButton:hover {
+            background-color: #ff5252; /* Cambio de color al pasar el mouse sobre el botón No */
+        }
+
+        #siButton {
+            cursor: pointer;
+            background-color: #6bb56a; /* Color de fondo botón Sí */
+            color: #fff; /* Color de texto botón Sí */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #siButton:hover {
+            background-color: #4caf50; /* Cambio de color al pasar el mouse sobre el botón Sí */
+        }
+
+        #corazon {
+            width: 50px; /* Tamaño del corazón */
+            margin-top: 20px;
+        }
+    </style>
+    <title>Propuesta Romántica</title>
+</head>
+<body>
+
+<div id="pagina1">
+    <div id="carrusel">
+        <img src="imagen/368693071_234047552961033_2483546004248637421_n.jpg" alt="Foto 1">
+        <img src="imagen/375041230_242846472081141_8560201301287825020_n.jpg" alt="Foto 2">
+        <img src="imagen/384803452_263562626676192_7709324677710707958_n.jpg" alt="Foto 3">
+        <img src="imagen/166185439_726286491369448_720037540658955087_n.jpg" alt="Foto 4">
+        <img src="imagen/299195151_1013122852685809_327156118425004499_n.jpg" alt="Foto 5">
+        <img src="imagen/368210076_233445859687869_6406570995351570803_n.jpg" alt="Foto 6">
+        <img src="imagen/366295917_233446083021180_2215163072582318606_n.jpg" alt="Foto 7">
+
+        <!-- Agregar más imágenes según sea necesario -->
+        <p>Hola buena noche, Pongo tu foto en sinonimo que esto es para ti y fue hecho para ti, no es algo de otro mundo, pero lo hice con mi corazon</p>
+    </div>
+    <button onclick="mostrarPagina('pagina2')">Siguiente</button>
+</div>
+
+<div id="pagina2" class="hidden">
+    <p>Me gusta desde que te conocí en mustad, pero el miedo me mataba solo por ser hija del departamento de recursos humanos.</p>
+    <button onclick="mostrarPagina('pagina3')">Siguiente</button>
+</div>
+
+<div id="pagina3" class="hidden">
+    <p>Encontré la oportunidad por redes sociales para conocerte un poco mejor, y empezaste a gustarme más no solo por tu belleza, sino cuando empezaste hablar y te fui conociedo vi ese corazon que tiene.</p>
+    <button onclick="mostrarPagina('pagina4')">Siguiente</button>
+</div>
+
+<div id="pagina4" class="hidden">
+    <p>Ahora quiero pedirte una propuesta.</p>
+    <button onclick="mostrarPagina('pagina5')">Siguiente</button>
+</div>
+
+<div id="pagina5" class="hidden">
+    <p>¿Quisieras que yo fuera tu novio? </p>
+    <button id="siButton" onclick="mostrarMensaje('Pongo esta relacion en la mano de DIOS, que todo salga a su volunta, nosotros ponermo de nuestra parte, beso grande conrazon ' )">Sí, acepto</button>
+    <button id="noButton" onmouseover="moverBoton()">No</button>
+    <img id="corazon" src="imagen/corazon.png" alt="Corazón"> <!-- Agregar ruta de la imagen del corazón -->
+</div>
+
+<script>
+    function mostrarPagina(pagina) {
+        document.getElementById('pagina1').classList.add('hidden');
+        document.getElementById('pagina2').classList.add('hidden');
+        document.getElementById('pagina3').classList.add('hidden');
+        document.getElementById('pagina4').classList.add('hidden');
+        document.getElementById('pagina5').classList.add('hidden');
+
+        document.getElementById(pagina).classList.remove('hidden');
+    }
+
+    function mostrarMensaje(mensaje) {
+        document.getElementById('pagina5').innerHTML = `<p>${mensaje}</p>`;
+    }
+
+    function moverBoton() {
+        const button = document.getElementById('noButton');
+        const newX = Math.floor(Math.random() * (window.innerWidth - button.offsetWidth));
+        const newY = Math.floor(Math.random() * (window.innerHeight - button.offsetHeight));
+        button.style.position = 'absolute';
+        button.style.left = `${newX}px`;
+        button.style.top = `${newY}px`;
+    }
+
+    // Función para cambiar las imágenes del carrusel
+    function cambiarImagenesCarrusel() {
+        const imagenes = document.querySelectorAll('#carrusel img');
+        let indice = 0;
+
+        setInterval(() => {
+            imagenes.forEach((imagen) => (imagen.style.display = 'none'));
+            imagenes[indice].style.display = 'block';
+            indice = (indice + 1) % imagenes.length;
+        }, 3000); // Cambiar imagen cada 3 segundos (ajustar según sea necesario)
+    }
+
+    
+
+    window.onload = function () {
+        cambiarImagenesCarrusel(); // Llamamos a la función para iniciar el carrusel
+    };
+</script>
+
+</body>
+</html>
